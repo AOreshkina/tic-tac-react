@@ -91,7 +91,7 @@ const[name2, nameSecond] = useState(names.robo);
 
 let arrayTable = new Array(9).fill(Empty);
 let getImg = true;
-
+let disabledButtonCanvas = new Array(9).fill(false);
 
 
  function ForHooks(){
@@ -114,16 +114,16 @@ function SetImage(i){
   if(getImg===true){
  arrayTable[f] = Cross
  StateImgZero(Cross);
- 
+ disabledButtonCanvas[f]=true;
   
-  SetImage(f);
+ 
   getImg = getImg===true?false:true;
   
   }else{
     arrayTable[f] = Zero;
     StateImgZero(Zero);
-    
-  SetImage(f);
+    disabledButtonCanvas[f]=true;
+ 
   getImg = getImg===true?false:true;
   
   }
@@ -137,9 +137,9 @@ class ReturnCanvas  extends React.Component{
    <div className="canvas">
                    <table id="table_c" >
                      
-                       <tr><td  id="a1"><button className="table_elem" onClick ={() => CanvasSet(0)} id = "0">{SetImage(0)}</button></td><td id="a2"><button className="table_elem"  onClick ={() => CanvasSet(1)} id = "1">{SetImage(1)}</button></td><td id="a3"><button className="table_elem"  onClick ={() => CanvasSet(2)} id = "2">{SetImage(2)}</button></td></tr> 
-                       <tr><td  id="b1"><button className="table_elem"  onClick ={() => CanvasSet(3)} id = "3">{SetImage(3)}</button></td><td id="b2"><button className="table_elem"  onClick ={() => CanvasSet(4) } id = "4">{SetImage(4)}</button></td><td id="b3"><button className="table_elem" onClick ={() => CanvasSet(5) } id = "5">{SetImage(5)}</button></td></tr> 
-                       <tr><td  id="c1"><button className="table_elem"  onClick ={() => CanvasSet(6) } id = "6">{SetImage(6)}</button></td><td id="c2"><button className="table_elem" onClick ={() => CanvasSet(7) } id = "7">{SetImage(7)}</button></td><td id="c3"><button className="table_elem" onClick ={() => CanvasSet(8) } id = "8">{SetImage(8)}</button></td></tr>
+                       <tr><td  id="a1"><button className="table_elem" onClick ={() => CanvasSet(0)} disabled={disabledButtonCanvas[0]} id = "0">{SetImage(0)}</button></td><td id="a2"><button className="table_elem"  onClick ={() => CanvasSet(1)} disabled={disabledButtonCanvas[1]} id = "1">{SetImage(1)}</button></td><td id="a3"><button className="table_elem"  onClick ={() => CanvasSet(2)} disabled={disabledButtonCanvas[2]} id = "2">{SetImage(2)}</button></td></tr> 
+                       <tr><td  id="b1"><button className="table_elem"  onClick ={() => CanvasSet(3)} disabled={disabledButtonCanvas[3]} id = "3">{SetImage(3)}</button></td><td id="b2"><button className="table_elem"  onClick ={() => CanvasSet(4) } disabled={disabledButtonCanvas[4]} id = "4">{SetImage(4)}</button></td><td id="b3"><button className="table_elem" onClick ={() => CanvasSet(5) } disabled={disabledButtonCanvas[5]} id = "5">{SetImage(5)}</button></td></tr> 
+                       <tr><td  id="c1"><button className="table_elem"  onClick ={() => CanvasSet(6) } disabled={disabledButtonCanvas[6]} id = "6">{SetImage(6)}</button></td><td id="c2"><button className="table_elem" onClick ={() => CanvasSet(7) } disabled={disabledButtonCanvas[7]} id = "7">{SetImage(7)}</button></td><td id="c3"><button className="table_elem" onClick ={() => CanvasSet(8) } disabled={disabledButtonCanvas[8]} id = "8">{SetImage(8)}</button></td></tr>
                        </table>
 
                </div>
