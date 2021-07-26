@@ -1,4 +1,4 @@
-import React from 'react' ;
+import React, { useEffect, useReducer } from 'react' ;
 import ReactDOM from 'react-dom';
 import Human from './img/human.jpg';
 import Ii from './img/ii.jpg';
@@ -90,15 +90,18 @@ const[name2, nameSecond] = useState(names.robo);
 };
 
 let arrayTable = new Array(9).fill(Empty);
+let count = 0;
+let previousMove ;
 let getImg = true;
 let disabledButtonCanvas = new Array(9).fill(false);
 
 
  function ForHooks(){
   const [u, StateImgZero]=useState(Empty);
- 
-
-
+  
+  
+    
+  
 function SetImage(i){
   
  // arrayTable[i]=u;
@@ -115,7 +118,9 @@ function SetImage(i){
  arrayTable[f] = Cross
  StateImgZero(Cross);
  disabledButtonCanvas[f]=true;
-  
+ previousMove=f;
+ count+=1 ; 
+ console.log('cnt',previousMove)
  
   getImg = getImg===true?false:true;
   
@@ -123,18 +128,37 @@ function SetImage(i){
     arrayTable[f] = Zero;
     StateImgZero(Zero);
     disabledButtonCanvas[f]=true;
- 
+    previousMove=f;
+ count+=1 ; 
+ console.log('cnt',previousMove)
   getImg = getImg===true?false:true;
   
   }
 };
- 
+function ClickRemove(){
+   
+    
+        arrayTable[previousMove] =Empty;
+        StateImgZero(Empty);
+        disabledButtonCanvas[previousMove]=false;
+        
+       
+        count=count-1;
+        getImg = getImg===true?false:true;
+      
+    
+    
+   
+   // 
+    //ForHooks();
+  }
   
 class ReturnCanvas  extends React.Component{
   render(){
     
   return(
-   <div className="canvas">
+    <div>
+      <div className="canvas">
                    <table id="table_c" >
                      
                        <tr><td  id="a1"><button className="table_elem" onClick ={() => CanvasSet(0)} disabled={disabledButtonCanvas[0]} id = "0">{SetImage(0)}</button></td><td id="a2"><button className="table_elem"  onClick ={() => CanvasSet(1)} disabled={disabledButtonCanvas[1]} id = "1">{SetImage(1)}</button></td><td id="a3"><button className="table_elem"  onClick ={() => CanvasSet(2)} disabled={disabledButtonCanvas[2]} id = "2">{SetImage(2)}</button></td></tr> 
@@ -143,6 +167,13 @@ class ReturnCanvas  extends React.Component{
                        </table>
 
                </div>
+               <div className = "end-game">
+               <p className ="texts" id="counter">{count} </p>
+               <button id="undo"onClick={ClickRemove} >Отменить ход</button>
+        
+               </div>
+    </div>
+   
   );
   }
 
@@ -153,7 +184,9 @@ class ReturnCanvas  extends React.Component{
  )
 } ;
   
+ 
   
+ 
  
   
 
@@ -173,9 +206,11 @@ function App() {
         
           <ChoosePlayer/>
           <ForHooks/>
+          
 
         
       </div>
+      
     </main>
     </div>
   );
