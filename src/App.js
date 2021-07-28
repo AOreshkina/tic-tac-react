@@ -32,11 +32,33 @@ const buttonFlag = {
 
 let textChoose = 'Выбери противника:';
 let arrayTable = new Array(9).fill(Empty);
+let winnersArray = new Array(9).fill(null);
 let count = 0;
 let previousMove ;
 let getImg = true;
-let disabledButtonCanvas = new Array(9).fill(false);
+let disabledButtonCanvas = new Array(9).fill(true);
+let winnerFlag;
  
+function WhoIsWinner(myArray){
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (myArray[a] && myArray[a] === myArray[b] && myArray[a] === myArray[c]) {
+      winnerFlag= myArray[a]==='x'?'Вы победили': 'Вы проиграли'
+      console.log('winner',winnerFlag)
+      return winnerFlag;
+    }
+  }
+}
 //Выбор игрока;
 
 const MyGame  = () =>{
@@ -51,6 +73,9 @@ const[name2, nameSecond] = useState(names.robo);
   setButtonSelec(buttonFlag.off);
   nameSecond(names.you);
   textChoose='Статус игры:';
+  for(let i=0;i<9;i++){
+    disabledButtonCanvas[i]=false;
+  }
   
  }
 
@@ -60,6 +85,9 @@ const[name2, nameSecond] = useState(names.robo);
   nameFirst(names.you);
   textChoose='Статус игры:';
   console.log('qwerty',selected1 );
+  for(let i=0;i<9;i++){
+    disabledButtonCanvas[i]=false;
+  }
  }
 
  const [u, StateImgZero]=useState(Empty);
@@ -74,19 +102,35 @@ function CanvasSet (f){
      arrayTable[f] = Cross
      StateImgZero(Cross);
      disabledButtonCanvas[f]=true;
+     winnersArray[f]='x';
      previousMove=f;
      count+=1 ; 
      console.log('cnt',previousMove)
      getImg = getImg===true?false:true;
+     WhoIsWinner(winnersArray)
+     if((winnerFlag==='Вы проиграли')||(winnerFlag==='Вы победили')){
+      
+        for(let i=0; i<9; i++){
+         disabledButtonCanvas[i]=true;
+        }
+     }
+
     } else{
        arrayTable[f] = Zero;
        StateImgZero(Zero);
        disabledButtonCanvas[f]=true;
+       winnersArray[f]='0';
        previousMove=f;
        count+=1 ; 
        console.log('cnt',previousMove)
        getImg = getImg===true?false:true;
+       WhoIsWinner(winnersArray)
+       if((winnerFlag==='Вы проиграли')||(winnerFlag==='Вы победили')){
+        for(let i=0; i<9; i++){
+         disabledButtonCanvas[i]=true;
         }
+     }
+      }
    };
 
  function ClickRemove(){
@@ -99,6 +143,18 @@ function CanvasSet (f){
 
  function NewGame(){
    //ChoosePlayer();
+   setSelectedFirst(iconsPath.iconSrcFirst);
+   setSelectedSecond(iconsPath.iconSrcSecond);
+   setButtonSelec(buttonFlag.on);
+   nameFirst(names.human);
+   nameSecond(names.robo);
+   textChoose='Выбери противника:'
+   count=0;
+   for(let i=0; i<9;i++){
+    arrayTable[i]=Empty;
+    StateImgZero(Empty);
+    disabledButtonCanvas[i]=true;
+   }
 
 
  }
@@ -137,6 +193,9 @@ class ReturnCanvas  extends React.Component{
      <img src={selected1} alt='iconsPath'></img>
    <button onClick={ChooseFirst}  disabled ={selec3}> {name1}</button>
    </div>
+   <div id="victoria">
+           <p>{winnerFlag}</p>        
+                </div>
    <div className ='choose-robot'>
      <img src={selected2}  alt='iconsPath'></img>
    <button onClick={ChooseSecond} disabled ={selec3}  >{name2}</button>
@@ -148,19 +207,6 @@ class ReturnCanvas  extends React.Component{
 };
 
  
- 
- 
-  
- 
-  
- 
- 
-  
-
- 
-
-  
-
 
 function App() {
 
