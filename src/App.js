@@ -148,6 +148,7 @@ function CanvasSet (f){
    setButtonSelec(buttonFlag.on);
    nameFirst(names.human);
    nameSecond(names.robo);
+   winnerFlag=' ';
    textChoose='Выбери противника:'
    count=0;
    for(let i=0; i<9;i++){
@@ -163,14 +164,12 @@ class ReturnCanvas  extends React.Component{
  render(){
    
  return(
-   <div>
+   <div className="canvas-and-end">
      <div className="canvas">
-                  <table id="table_c" >
-                    
-                      <tr><td  id="a1"><button className="table_elem" onClick ={() => CanvasSet(0)} disabled={disabledButtonCanvas[0]} id = "0">{SetImage(0)}</button></td><td id="a2"><button className="table_elem"  onClick ={() => CanvasSet(1)} disabled={disabledButtonCanvas[1]} id = "1">{SetImage(1)}</button></td><td id="a3"><button className="table_elem"  onClick ={() => CanvasSet(2)} disabled={disabledButtonCanvas[2]} id = "2">{SetImage(2)}</button></td></tr> 
-                      <tr><td  id="b1"><button className="table_elem"  onClick ={() => CanvasSet(3)} disabled={disabledButtonCanvas[3]} id = "3">{SetImage(3)}</button></td><td id="b2"><button className="table_elem"  onClick ={() => CanvasSet(4) } disabled={disabledButtonCanvas[4]} id = "4">{SetImage(4)}</button></td><td id="b3"><button className="table_elem" onClick ={() => CanvasSet(5) } disabled={disabledButtonCanvas[5]} id = "5">{SetImage(5)}</button></td></tr> 
-                      <tr><td  id="c1"><button className="table_elem"  onClick ={() => CanvasSet(6) } disabled={disabledButtonCanvas[6]} id = "6">{SetImage(6)}</button></td><td id="c2"><button className="table_elem" onClick ={() => CanvasSet(7) } disabled={disabledButtonCanvas[7]} id = "7">{SetImage(7)}</button></td><td id="c3"><button className="table_elem" onClick ={() => CanvasSet(8) } disabled={disabledButtonCanvas[8]} id = "8">{SetImage(8)}</button></td></tr>
-                      </table>
+                  <button className="table_elem" onClick ={() => CanvasSet(0)} disabled={disabledButtonCanvas[0]} id = "0">{SetImage(0)}</button><button className="table_elem"  onClick ={() => CanvasSet(1)} disabled={disabledButtonCanvas[1]} id = "1">{SetImage(1)}</button><button className="table_elem"  onClick ={() => CanvasSet(2)} disabled={disabledButtonCanvas[2]} id = "2">{SetImage(2)}</button>
+                      <button className="table_elem"  onClick ={() => CanvasSet(3)} disabled={disabledButtonCanvas[3]} id = "3">{SetImage(3)}</button><button className="table_elem"  onClick ={() => CanvasSet(4) } disabled={disabledButtonCanvas[4]} id = "4">{SetImage(4)}</button><button className="table_elem" onClick ={() => CanvasSet(5) } disabled={disabledButtonCanvas[5]} id = "5">{SetImage(5)}</button>
+                     <button className="table_elem"  onClick ={() => CanvasSet(6) } disabled={disabledButtonCanvas[6]} id = "6">{SetImage(6)}</button><button className="table_elem" onClick ={() => CanvasSet(7) } disabled={disabledButtonCanvas[7]} id = "7">{SetImage(7)}</button><button className="table_elem" onClick ={() => CanvasSet(8) } disabled={disabledButtonCanvas[8]} id = "8">{SetImage(8)}</button>
+                      
 
               </div>
               <div className = "end-game">
@@ -191,14 +190,14 @@ class ReturnCanvas  extends React.Component{
      <p className="texts" id = "choose_opponent">{textChoose}</p>
      <div className ='choose-human'>
      <img src={selected1} alt='iconsPath'></img>
-   <button onClick={ChooseFirst}  disabled ={selec3}> {name1}</button>
+     <button className ="select-button" onClick={ChooseFirst}  disabled ={selec3}> {name1}</button>
    </div>
    <div id="victoria">
-           <p>{winnerFlag}</p>        
-                </div>
+      <p className ="texts">{winnerFlag}</p>        
+   </div>
    <div className ='choose-robot'>
      <img src={selected2}  alt='iconsPath'></img>
-   <button onClick={ChooseSecond} disabled ={selec3}  >{name2}</button>
+   <button className ="select-button" onClick={ChooseSecond} disabled ={selec3}  >{name2}</button>
    </div>
    </div>
    <ReturnCanvas/>

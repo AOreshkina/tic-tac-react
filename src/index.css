@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  height: 100%;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -7,6 +8,164 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+.select-button{
+  position: relative;
+  background: #fff;
+  color: #000;
+  border: 0pm;
+  cursor: pointer;
+  font-family: 'RobotoMono', cursive;
+  height: 100%;
+  font-size: 1.5em;
+  line-height: 120%;
+}
+
+.select-button:hover{
+  position: relative;
+  background: rgb(248, 232, 232);
+  color: #000;
+  border: 0pm;
+  cursor: pointer;
+  font-family: 'RobotoMono', cursive;
+  height: 100%;
+  font-size: 1.5em;
+  line-height: 120%;
+}
+
+.texts{
+  color: #000;
+ font-family: 'RobotoMono', cursive;
+ font-size: 2em;
+}
+.header-container>p{
+  margin-bottom: 5px;
+  grid-area: head;
+  background: #fff;
+ color: #000;
+ font-family: 'RobotoMono', cursive;
+ font-size: 3em;
+ line-height: 120%;
+}
+.header-container>img{
+  margin-top: 10px;
+  grid-area: logo;
+ 
+ width: 100%;
+/*height: 80%;*/
+}
+.header-container{
+  position: relative;
+  top:10px;
+  width: 100%;
+  height: 10%;
+  grid-area: header_container;
+  display: grid; 
+  grid-template-columns: 16% 15% 2% 65% 2%;
+  grid-template-rows:   100%;
+  justify-content: center;
+  grid-template-areas: 
+  ". logo . head ." ;
+}
+
+#choose_opponent{
+  color: #000;
+ font-family: 'RobotoMono', cursive;
+ font-size: 3em;
+ line-height: 120%;
+ grid-area: textGameStatus;
+
+}
+.choose-human>img{
+  position: relative;
+  margin-left: 2px;
+  width: 80%;
+  height: auto;
+  max-height: 80%;
+  grid-area: humanPlayerImg;
+}
+
+.choose-human>.select-button{
+  grid-area: selecButtonHuman;
+}
+
+.choose-human{
+  grid-area: human;
+  display: grid;
+  grid-template-columns: 15% 80% 5%;
+  grid-template-rows: 2% 80% 10px 15% 1%;
+  grid-template-areas: 
+  ". . ."
+  ". humanPlayerImg ."
+  ". . ."
+  ". selecButtonHuman . "
+  ". . .";
+}
+
+.choose-robot>img{
+  position: relative;
+  margin-right: 2px;
+  width: 80%;
+  height: auto;
+  max-height: 80%;
+  grid-area: roboPlayerImg;
+}
+
+.choose-robot>.select-button{
+  grid-area: selecButtonRobo;
+}
+
+.choose-robot{
+  grid-area: robo;
+  display: grid;
+  grid-template-columns: 5% 80% 15%;
+  grid-template-rows: 2% 80% 10px 15% 1%;
+  grid-template-areas: 
+  ". . ."
+  ". roboPlayerImg ."
+  ". . ."
+  ". selecButtonRobo . "
+  ". . .";
+}
+
+#victoria{
+  grid-area: victory;
+}
+
+.choose{
+  position: relative;
+  grid-area: choosePanel;
+  display: grid;
+  grid-template-columns: 35% 5% 20% 5% 35%;
+  grid-template-rows: 5% 15% 5% 70% 5%;
+  grid-template-areas: 
+  ". . . . ."
+  ". . textGameStatus . ."
+  ". . . . ."
+  "human . victory . robo"
+  ". . . . .";
+  
+
+}
+
+.canvas-and-end{
+grid-area: canvasButtons;
+}
+
+.main-container{
+  position: relative;
+  
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 5px 30% 60% 1fr;
+  grid-template-areas: 
+  "."
+  "choosePanel"
+  "canvasButtons"
+  ".";
+
+  
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
