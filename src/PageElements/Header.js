@@ -8,7 +8,7 @@ export default function MyHeader(){
         <header>
             <div className ="header-container">
                 <img src={Logo} alt=""></img>
-                <p>КРЕСТИКИ-НОЛИКИ</p> 
+                <p>TIC-TAC-toe</p> 
             </div>    
          </header>
          
