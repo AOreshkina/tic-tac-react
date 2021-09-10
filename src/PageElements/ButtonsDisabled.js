@@ -1,11 +1,16 @@
 import React from 'react';
 
 
+let tableArray = new Array(9);
+
 export default function ButtonsDisabled(value, number){
-    let tableArray = new Array(9);
+    
+    if((arguments[0]===undefined)||(arguments[1]===undefined)){
+        return(`${tableArray[number]}`)
+    }else{
    tableArray[number]=value;
-   let arrArgs = Array.from(arguments); 
-   if((arrArgs[0]===undefined)&&(arrArgs[1]===undefined)){
-       return(tableArray)
-   }
-}
+  
+  console.log('tableArr',tableArray )
+       return(`${tableArray[number]}`)
+   
+}}

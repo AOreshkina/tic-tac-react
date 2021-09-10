@@ -9,7 +9,7 @@ import Empty from '../img/empty.jpg';
 
 
 export default function CanvasSet(number, opponent){
-    const [u, ThisImg] = useState(Empty);
+    
     let xOrNull;
     let gameArray = new Array(9).fill(null);
     let numberArray =[]; 
@@ -21,9 +21,8 @@ export default function CanvasSet(number, opponent){
         ButtonsDisabled(true, number);
         GameArray(xOrNull, number);
         numberArray.push(number);
-        let myImg = xOrNull==='x'?Cross:Zero;
-        ThisImg(myImg);
-        SetImage(number,u)
+        
+      
 
         
     }else{
@@ -33,15 +32,13 @@ export default function CanvasSet(number, opponent){
             ButtonsDisabled(true, number);
             GameArray(xOrNull, number);
             let myImg = xOrNull==='x'?Cross:Zero;
-            ThisImg(myImg);
-            SetImage(number,u)
+            
             xOrNull = xOrNull==='x'?'0':'x';
             gameArray[number+1] = xOrNull;
             ButtonsDisabled(true, number+1);
             GameArray(xOrNull, number+1);
-            myImg = xOrNull==='x'?Cross:Zero;
-            ThisImg(myImg);
-            SetImage(number+1,u)
+        
+            
             numberArray.push(number);
             
         }
